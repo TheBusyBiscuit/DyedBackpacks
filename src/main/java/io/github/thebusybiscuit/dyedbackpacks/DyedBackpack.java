@@ -3,9 +3,9 @@ package io.github.thebusybiscuit.dyedbackpacks;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import java.util.Objects;
 
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -29,7 +29,7 @@ public class DyedBackpack extends SlimefunBackpack {
     public DyedBackpack(int size, ItemGroup itemGroup, SlimefunItemStack item, SlimefunItemStack backpack, BackpackColor color) {
         super(size, itemGroup, item, RecipeType.ENHANCED_CRAFTING_TABLE, createRecipe(backpack, color));
 
-        Validate.notNull(color, "Dyed Backpack colors cannot be null!");
+        Objects.requireNonNull(color, "Dyed Backpack colors cannot be null!");
         this.color = color;
     }
 
@@ -52,7 +52,7 @@ public class DyedBackpack extends SlimefunBackpack {
         // @formatter:off
         return new ItemStack[] { 
             wool,    wool,     wool,
-            leather, backpack, leather,
+            leather, backpack.item(), leather,
             wool,    wool,     wool
         };
         // @formatter:on
